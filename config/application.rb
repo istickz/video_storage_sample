@@ -21,6 +21,13 @@ module VideoStorageSample
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.autoload_paths += %W(#{config.root}/lib)
     config.active_record.raise_in_transactional_callbacks = true
+    config.active_job.queue_adapter = :delayed_job
+    config.assets.enabled = false
+
+    config.generators do |g|
+      g.assets false
+    end
   end
 end
